@@ -313,18 +313,18 @@ background-color: #aca9a9;
        font-size: 20px;
     padding: 5px 17px;
     margin: 26px 20px;
-    border: solid black 1px;
+   
     /* border-radius: 16px; */
     background: #fd2955;
     font-family: 'Roboto Slab', serif;
     cursor: pointer;
     color: black;
-    border-radius: 3px;
+    border-radius: 8px;
 }
 .submit:hover
 {
-    color: white;
-    background-color: black;
+   
+padding: 3px 13px;
 }
 .forgot
 {
@@ -514,4 +514,26 @@ a
 .options
 {
     display: none;
+}
+.main_order
+{
+        display: flex;
+    height: 80vh;
+    width: 100%;
+    flex-direction: row;
+}
+.order_img
+{
+        height: 80vh;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:20px solid whitesmoke;
+}
+
+.order_info
+{
+        height: 80vh;
+    width: 55%;
 }

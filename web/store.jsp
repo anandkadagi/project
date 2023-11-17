@@ -155,6 +155,8 @@ else
     PreparedStatement pst=con.prepareStatement("select * from products");
     ResultSet rs=pst.executeQuery();
     while(rs.next()){
+        String id=rs.getString("product_id");
+       String path="order_page.jsp?name='"+id+"'"; 
         int s_price=rs.getInt("selling_price");
       int dis=rs.getInt("discount");
      
@@ -162,7 +164,7 @@ else
     
       
         %>
-        <a href="order_page.jsp">
+        <a href="<%= path%>">
             <div class="sub_card">
                 <div class="sub_img" style="text-align: center"><img src="Images/<%= rs.getString("image") %>"></div>
                 <div class="sub_text" style="background-color: whitesmoke">
