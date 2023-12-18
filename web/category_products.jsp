@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     </head>
-    <body style=" background-color: #ebe1ea;">
+    <body style=" ">
       <%
      Class.forName("com.mysql.jdbc.Driver");
            %>
@@ -84,8 +84,8 @@ else
     align-items: center;
     justify-content: center;
     font-family: serif; 
-    font-weight: bold;
-    border: 1px solid;
+  letter-spacing: 5px;
+   font-size: 25px;
     border-radius: 3px">Filters</div>
     <div class="selection">
         <select name="val" onchange="location=this.value;">
@@ -154,12 +154,12 @@ else
       {
       String demo=name.substring(1, (name.length()-1));
       System.out.println(demo);
-      pst1=con1.prepareStatement("select * from products where  brand='"+demo+"' OR category='"+demo+"' ",ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+      pst1=con.prepareStatement("select * from products where  brand='"+demo+"' OR category='"+demo+"' ",ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
      rs2=pst1.executeQuery();
       }
        
       else{
-       pst1=con1.prepareStatement("select * from products where  brand='"+name+"' OR category='"+name+"' ",ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+       pst1=con.prepareStatement("select * from products where  brand='"+name+"' OR category='"+name+"' ",ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
      rs2=pst1.executeQuery();
       } 
        if(rs2.next())
@@ -169,14 +169,40 @@ else
            while(rs2.next()){
            int s_price=rs2.getInt("selling_price");
       int dis=rs2.getInt("discount");
-     
+      int id=rs2.getInt("product_id");
+      int qty=rs2.getInt("qty");
+     String path="order_page.jsp?name='"+id+"'"; 
     int  val=s_price-(((s_price)*(dis))/100);
-    
-        %>
-        <a href="#">
+    if(qty<=0)
+    {
+    %>
+    <div class="sub_card" style="    border: 1px solid #dba2e5;">
+                <div class="sub_img" style="text-align: center"><img src="Images/<%= rs2.getString("image") %>"></div>
+                <div class="sub_text" style="background-color: whitesmoke">
+                    <h7 style="text-align: center" ><%= rs2.getString("product_name") %></h7>
+                    <br>
+                    <h8 style="    text-align: left;
+    display: inline-block;
+    color: green;
+    margin: 0px 3px;
+    width: 100%;" >
+                        <h8>₹<%= val%></h8>
+                        <h8 style="margin: 0 5px 0 0;text-decoration: line-through;font-size: 14px;color: red"><%= rs2.getString("selling_price") %></h8>
+                        
+                        <h8 style="font-size: 12px"><%= dis%>% off</h8>
+                         <h8 style="font-size: 12px; color: red">Out of Stock</h8>
+                    </h8> 
+                </div>
+            </div>  
+             <%
+    }
+else
+{
+%>
+    <a href="<%= path%>" style="     border: 1px solid #dba2e5;">
             <div class="sub_card">
                 <div class="sub_img" style="text-align: center"><img src="Images/<%= rs2.getString("image") %>"></div>
-                <div class="sub_text" style="background-color: whitesmoke;border: 1px solid black;font-size: 17px">
+                <div class="sub_text" >
                     <h7 style="text-align: center" ><%= rs2.getString("product_name") %></h7>
                     <br>
                     <h8 style="    text-align: left;
@@ -192,11 +218,13 @@ else
                 </div>
             </div>
                      </a>
-            <%
+             <%
+}
+       
        }
 }
       
-           
+       con.close();    
     %>
    
         </div>

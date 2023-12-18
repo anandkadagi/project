@@ -53,4 +53,9 @@
             30
         </session-timeout>
     </session-config>
+    <dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>javax.mail</artifactId>
+    <version>1.6.5</version> <!-- Use the latest version available -->
+</dependency>
 </web-app>

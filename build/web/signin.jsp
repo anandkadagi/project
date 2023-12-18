@@ -18,8 +18,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
     </head>
-    <body style="background-color:  #B3B3B3">
+    <body style="
+          background-image: url(Images/back4.webp);
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          height: 100vh
+          ">
         <div class="box_sign">
             <div class="sub_sign">
                
@@ -34,7 +40,9 @@
   margin-bottom: 5px;
   font-size: 60px;"><span>Mel</span>odify</h1>
             </div> 
-            <form method="post" action="prosess.jsp" class="info_signin">
+            <form method="post" action="prosess.jsp" class="info_signin" 
+                  style="background-color: rgba(255,255,255,.15); backdrop-filter:blur(5px)"
+                  >
              
                 
                 <input type="text" name="name" class="data" id="name"  placeholder="Enter your full name" required/>
@@ -55,7 +63,7 @@
                  <p1 id="pass_val" class="validation_alert">
                     
                 </p1>
-                <textarea rows="5" cols="40" name="address" class="data"  placeholder="Enter your address" required="" ></textarea>
+                <textarea rows="5" cols="40" name="address" class="data" id="address" placeholder="Enter your address" required="" ></textarea>
                 <input type="submit" value="SignUp" class="submit"/>
             </form>
          
@@ -117,5 +125,6 @@
             }
             
         </script>
+       
     </body>
 </html>

@@ -22,20 +22,29 @@
             try{
              String name=request.getParameter("name");
         String pass=request.getParameter("password");
-       
+   
         Connection1.Connection2();
         Statement st=Connection1.con.createStatement();
          Statement st1=Connection1.con.createStatement();
+          
         ResultSet rs=st.executeQuery("select * from user where username='"+name+"' and password='"+pass+"'");
         ResultSet rs1=st1.executeQuery("select * from admin where username='"+name+"' and password='"+pass+"'");
        if(rs.next())
        {
         if(name.equals(rs.getString("username")) && pass.equals(rs.getString("password")))
         {
-        
-        session.setAttribute("val",name );
-        
-        response.sendRedirect("index.jsp");
+              
+            session.setAttribute("val",name );
+            
+            if((String)session.getAttribute("message")==null)
+            {
+                System.out.println("H");
+             response.sendRedirect("index.jsp");
+            }
+            else{
+      response.sendRedirect((String)session.getAttribute("message"));
+     
+            }
         }
        }
        
@@ -45,13 +54,14 @@
         if(name.equals(rs1.getString("username")) && pass.equals(rs1.getString("password")))
         {
        
-        session.setAttribute("val",name );
+        session.setAttribute("val1",name );
         
         response.sendRedirect("admin.jsp");
         }
        }
         else
        {
+          
            %>
             <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
            <script>
@@ -75,7 +85,7 @@
             {
             System.out.println(e);
             }
-       
+       Connection1.con.close();
         %>
         
         

@@ -20,7 +20,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     </head>
-    <body style="background-color:  #B3B3B3" >
+    <body style="
+          background-image: url(Images/back4.webp);
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          height: 100vh
+          " >
         <div class="box_sign">
             <div class="sub_sign">
                
@@ -35,14 +40,14 @@
   margin-bottom: 5px;
   font-size: 60px;"><span>Mel</span>odify</h1>
             </div> 
-            <form method="post" action="login_process.jsp"  class="info_signin">
+            <form method="post" action="login_process.jsp"  class="info_signin" style="background-color: rgba(255,255,255,.15); backdrop-filter:blur(5px)">
                 <h1 style="    font-family: 'Roboto Slab', serif;">Log in</h1>
                 <input type="text" name="name" id="name" class="data" placeholder="Enter your name" required/>
                 
                 <input type="password" name="password" id="pass" class="data" placeholder="Enter password" required/>
                <%
                    session=request.getSession(false);
-               
+              
                if((String)session.getAttribute("message")!=null)
                {
                 %>

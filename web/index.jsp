@@ -25,19 +25,21 @@
     </head>
     <body>
         
-        <div class="navbar">
+        <div class="navbar" style="background-color: #b5b4b5;background-image: none">
         <div class="logo">
             <h1><span>Mel</span>odify</h1>
         </div>
         <div class="nav">
             <ul>
                  <%
+                      System.out.println("Hello");
                     PrintWriter p=response.getWriter();
                     HttpSession s=request.getSession();
                     
                 if((String)s.getAttribute("val")!=null)
                 {
                 String name=(String)s.getAttribute("val");
+                System.out.println(name);
                 %>
                 <li><a href="/Melodify/">Home</a> </li>
                 <li><a href="/Melodify/store.jsp">Store</a></li>
@@ -126,6 +128,15 @@ else
         Connection1.Connection2();
       PreparedStatement pst1=Connection1.con.prepareStatement("select * from brand");
       ResultSet rs1=pst1.executeQuery();
+    
+       
+        String status="confirmed";
+        String status1="delivered";
+     pst=Connection1.con.prepareStatement("update orders set status='"+status1+"' where date <= CURRENT_DATE-INTERVAL 3 DAY AND status='"+status+"'",ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        pst.executeUpdate();
+       
+        
+    
       while(rs1.next()){
           String brand=rs1.getString("brand_name");
           

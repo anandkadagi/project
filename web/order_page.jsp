@@ -11,6 +11,12 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%! 
+          public void validate()
+{
+System.out.println("HEl");
+}
+          %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,6 +31,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     </head>
     <body>
+        
          <div class="navbar">
         <div class="logo">
             <h1><span>Mel</span>odify</h1>
@@ -69,6 +76,7 @@ else
          <%
              String id=request.getParameter("name");
             String product_id=id.substring(1, (id.length()-1));
+            session.setAttribute("product_id", product_id);
             
     Connection1.Connection2();
       Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/melodify", "root", "");
@@ -93,11 +101,12 @@ else
                 <h1 style="display: inline-block;    margin: 0px 22px; color: green">Rs.<%= val %></h1>
                 <h4 style="display: inline-block;margin: 0px 15px;text-decoration: line-through; color: red">Rs.<%= s_price%></h4>
                 <h5 style="display: inline-block;color: green">(<%= dis%> %off)</h5><br>
-                <form>
-                    <h4 style="display: inline-block">Qty</h4>: <input style="height: 40px;width: 70px" type="number" name="qty" value="1" />
-                </form>
-                <button class="submit"><img src="Images/shopping-bag.png" height="23px" width="23px"/> Buy Now</button>
-                <button class="submit"><img src="Images/cart.png" height="23px" width="23px"/> Add to Cart</button>
+                <form  method="post"  >
+                    <h4 style="display: inline-block">Qty</h4>: <input style="height: 40px;width: 70px ; margin-right: 75%"  type="number" name="qty" value="1" min="1" autofocus/>
+               
+                     <button type="submit" class="submit" formaction="newjsp3.jsp" ><img src="Images/shopping-bag.png" height="23px" width="23px"/>Buy Now</button>
+                     <button class="submit" type="submit" formaction="cart_page.jsp" ><img src="Images/cart.png" height="23px" width="23px"/> Add to Cart</button>
+                 </form>
                 <p style="font-size: xx-large;
     font-weight: 800;
     text-align: left;
@@ -106,7 +115,9 @@ else
         </div>
             <%
             }
-            %>
+System.out.println(request.getParameter("qty"));
+          %>
+          
              <div class ="footer">
             <div class="sub_footer1">
                 <div class="footer_cont">
@@ -135,5 +146,7 @@ else
             </div>
             
         </div>
+         
+        
     </body>
 </html>

@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     </head>
-    <body style=" background-color: #ebe1ea;">
+    <body>
         <%
      Class.forName("com.mysql.jdbc.Driver");
            %>
@@ -86,8 +86,8 @@ else
     align-items: center;
     justify-content: center;
     font-family: serif; 
-    font-weight: bold;
-    border: 1px solid;
+  letter-spacing: 5px;
+   font-size: 25px;
     border-radius: 3px">Filters</div>
     <div class="selection">
         <select name="val" onchange="location=this.value;">
@@ -159,12 +159,34 @@ else
        String path="order_page.jsp?name='"+id+"'"; 
         int s_price=rs.getInt("selling_price");
       int dis=rs.getInt("discount");
-     
+     int qty=rs.getInt("qty");
     int  val=s_price-(((s_price)*(dis))/100);
-    
-      
+    if(qty<=0){
+    %>
+           <div class="sub_card">
+                <div class="sub_img" style="text-align: center"><img src="Images/<%= rs.getString("image") %>"></div>
+                <div class="sub_text" style="background-color: whitesmoke">
+                    <h7 style="text-align: center" ><%= rs.getString("product_name") %></h7>
+                    <br>
+                    <h8 style="    text-align: left;
+    display: inline-block;
+    color: green;
+    margin: 0px 3px;
+    width: 100%;" >
+                        <h8>₹<%= val%></h8>
+                        <h8 style="margin: 0 5px 0 0;text-decoration: line-through;font-size: 14px;color: red"><%= rs.getString("selling_price") %></h8>
+                        
+                        <h8 style="font-size: 12px"><%= dis%>% off</h8>
+                         <h8 style="font-size: 12px; color: red">Out of Stock</h8>
+                    </h8> 
+                </div>
+            </div>  
+            <%
+    }
+else{
         %>
-        <a href="<%= path%>">
+        
+        <a href="<%= path%>" style="    border: 1px solid #dba2e5;">
             <div class="sub_card">
                 <div class="sub_img" style="text-align: center"><img src="Images/<%= rs.getString("image") %>"></div>
                 <div class="sub_text" style="background-color: whitesmoke">
@@ -187,7 +209,7 @@ else
     
    
     }
-       
+} 
            
     %>
    

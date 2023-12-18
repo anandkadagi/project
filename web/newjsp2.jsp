@@ -12,6 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div style="width: 500px;height:  600px;background-image: url(Images/Background.jpg)">
+            <div style="height: 200px;width: 200px"></div>
+        </div>
     </body>
 </html>

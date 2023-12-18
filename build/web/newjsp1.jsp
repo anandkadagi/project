@@ -4,6 +4,9 @@
     Author     : ASUS
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="com.data.Connection1"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,33 +15,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="demo" method="post" enctype="multipart/form-data" >
-            <select name="category" id="select" >
-                <option >Select</option>
-                <option value="Guitar">Guitar</option>
-                <option value="Piano">Piano</option>
-                <option value="Violin">Violin</option>
-                <option value="Fluet">Fluet</option>
-                <option value="Drums">Drums</option>
-                <option value="Trombone">Trombone</option>
-                <option value="Speakers">Speakers</option>
-                <option value="Audio Interface">Audio Interface</option>
-                    
-                    
-            </select>
-            <input type="text" name="p_name" required/>
-            <input type="text" name="purchase_price" required/>
-             <input type="text" name="selling_price" required/>
-              <input type="date" name="date1" required/>
-               <input type="text" name="discount" required/>
-                <input type="text" name="qty" required/>
-                <input type="file" name="image" required/>
-                <input type="submit" value="submit"/>
-        </form>
-        <form method="post" action="demo2" enctype="multipart/form-data">
-            <input type="text" name="name"/>
-            <input type="file" name="img"/>
-            <input type="submit" value="submit"/>
-        </form>
+        <%
+        Connection1.Connection2();
+        String status="confirmed";
+        String status1="delivered";
+        PreparedStatement pst=Connection1.con.prepareStatement("update orders set status='"+status1+"' where date <= CURRENT_DATE-INTERVAL 3 DAY AND status='"+status+"'",ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        pst.executeUpdate();
+       
+        
+        %>
     </body>
 </html>

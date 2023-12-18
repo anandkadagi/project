@@ -21,18 +21,21 @@
              try
              {
              String num=request.getParameter("num");
+             
       Connection1.Connection2();
       Statement st=Connection1.con.createStatement();
        Statement st2=Connection1.con.createStatement();
-      ResultSet rs1=st.executeQuery("select * from user where contact='"+num+"'");
-      ResultSet rs2=st2.executeQuery("select* from admin where contact='"+num+"'");
+      ResultSet rs1=st.executeQuery("select * from user where Contact='"+num+"'");
+      ResultSet rs2=st2.executeQuery("select* from admin where Contact='"+num+"'");
+      session.setAttribute("num", num);
       if(rs1.next())
       {
-      response.sendRedirect("updateUser.jsp");
+      response.sendRedirect("login_Update_user.jsp");
+      
       }
         if(rs2.next())
       {
-      response.sendRedirect("updateAdmin.jsp");
+      response.sendRedirect("login_Update_admin.jsp");
       }
         else
         {

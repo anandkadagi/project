@@ -23,10 +23,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     </head>
     <body class="background_color">
-        <div class="box ">
+        <div class="box " style="height: 100vh">
             <form method="post" action="verification.jsp" class="info_forgot">
                 <h1 style="    font-family: 'Roboto Slab', serif;">Verification</h1>
-                <input type="text" name="num" class="data" placeholder="Enter your mobile number"/>
+                <input type="text" name="num" class="data" placeholder="Enter your contact"/>
                
                 <input type="submit" value="Submit" class="submit"/>
                
